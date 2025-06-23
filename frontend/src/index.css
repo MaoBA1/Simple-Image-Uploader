@@ -17,6 +17,11 @@
   src: url('./assets/fonts/semi-bold.woff') format('woff');
 }
 
+@font-face {
+  font-family: 'bold';
+  src: url('./assets/fonts/bold.woff') format('woff');
+}
+
 body {
   margin: 0;
   font-family: light;

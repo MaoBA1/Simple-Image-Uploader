@@ -6,6 +6,20 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      animation: {      
+        slide: "slide 5s linear infinite",
+        'fade-in': 'fade-in 0.3s ease-in-out',
+      },
+      keyframes: {
+        slide: {
+          from: { left: "-15%" },
+          to: { left: "115%" },
+        },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        }
+      },
       colors: {
         white: {
           0: "#FFFFFF",
@@ -27,7 +41,10 @@ module.exports = {
         },
       },
       fontFamily: {
-        inter: ["light", "medium", "semi-bold"],
+        "inter-light": ["light"],
+        "inter-medium": ["medium"],
+        "inter-semibold": ["semi-bold"],
+        "inter-bold": ["bold"],
       },
     },
   },
