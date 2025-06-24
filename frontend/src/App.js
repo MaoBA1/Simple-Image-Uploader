@@ -26,6 +26,7 @@ function App() {
 
   const downloadImageHandler = async() => {
     const response = await fetch("/api/download");
+    resp
   }
 
   return (
