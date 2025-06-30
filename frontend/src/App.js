@@ -24,10 +24,28 @@ function App() {
     }
   };
 
-  const downloadImageHandler = async() => {
+  const downloadImageHandler = async () => {
     const response = await fetch("/api/download");
-    resp
-  }
+
+    if (!response.ok) throw new Error("Download failed");
+
+    const disposition = response.headers.get("Content-Disposition");
+
+    const match = disposition.match(/filename[^;=\n]*=(['"]?)([^'"\n]*)\1/);
+    let filename = match[2];
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+
+    a.download = filename;
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+  };
 
   return (
     <div className="bg-white-20 dark:bg-black-0 h-[100dvh]">
@@ -60,7 +78,10 @@ function App() {
                 </div>
               )}
             </button>
-            <button onClick={downloadImageHandler} className="w-[100px] h-full bg-blue-10 flex flex-row gap-x-[5px] items-center justify-center rounded-md text-white-0">
+            <button
+              onClick={downloadImageHandler}
+              className="w-[100px] h-full bg-blue-10 flex flex-row gap-x-[5px] items-center justify-center rounded-md text-white-0"
+            >
               <div>
                 <img src={download} alt="download-icon" className="w-[15px]" />
               </div>

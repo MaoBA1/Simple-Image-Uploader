@@ -1,3 +1,5 @@
+import path from 'path';
+
 import express from "express";
 import multer from "multer";
 
@@ -30,6 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(`/${storageFolderName}`, express.static(storageFolderName));
 
+
 app.post("/api/upload", upload.single("image"), (req, res) => {
   console.log("File received:", req.file);
   const fileUrl = `${req.protocol}://${req.get('host')}/${storageFolderName}/${req.file.filename}`;
@@ -37,8 +40,13 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
 });
 
 app.get("/api/download", (req, res) => {
-    res.sendFile(storageFolder + "/" + storageManager.getStorageFiles()[0]);
+    const filePath = storageFolder + "/" + storageManager.getStorageFiles()[0];
+    const fileName = path.basename(filePath)
+    res.setHeader("Content-Disposition", `attachment; filename="${fileName}"`);
+    res.sendFile(filePath);
 });
+
+
 
 app.listen(port, () => {
   console.log(`Server is listening on ${port}`);

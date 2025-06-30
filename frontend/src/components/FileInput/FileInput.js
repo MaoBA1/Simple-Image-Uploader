@@ -42,7 +42,9 @@ function FileInput({ onImageUploadFinished }) {
 
   const dropZoneSettings = {
     accept: {
-      "image/*": [],
+      "image/jpeg": [],
+      "image/png": [],
+      "image/gif": [],
     },
     onDrop,
     onDropRejected,
