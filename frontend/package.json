@@ -2,7 +2,7 @@
   "name": "simple-image-uploader",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://simple-image-uploader-tn4o.onrender.com",
+  "proxy": "http://127.0.0.1:8080",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",

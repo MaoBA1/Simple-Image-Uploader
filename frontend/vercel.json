@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://simple-image-uploader-tn4o.onrender.com/api/:match*"
+    }
+  ]
+}
